@@ -1,5 +1,5 @@
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = '(e$z03ckbeb^9b%)4m&l+bnm&cvsml4@-m17$tydwny9iyzvko'
 DEBUG = True
 ALLOWED_HOSTS = ['*']
@@ -13,3 +13,7 @@ DATABASES = {
     }
 }
 MEDIA_ROOT = BASE_DIR+'/media/'
+STATIC_ROOT =   BASE_DIR+"/static"
+STATIC_URL = '/static/'
+
+
