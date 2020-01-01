@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+</html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+    <ul id="list">
+
+    </ul>
+    <hr />
+    <form onsubmit="return false" id="uploadForm" name="uploadForm">
+        <input type="file" name="file">
+        <button id="submitButton"> 上传 </button>
+    </form>
+
+
+    <script src="/static/js/axios.js"></script>
+
+    <script>
+        let a = document.getElementById("list")
+        let button = document.getElementById("submitButton")
+        let form = document.getElementById("uploadForm")
+        form.addEventListener('submit',
+            function upload(e) {
+                let formData = new FormData(form)
+                axios.post("/file/", formData).then(res => location.reload())
+            }
+        )
+        axios.get('/file/').then(
+            res =>
+            res.data.map(e => {
+                let li = document.createElement("li");
+                let p = document.createElement("a",{href:`/media/upload/${e.fields.FileName}`});
+                p.href=`/media/uploads/${e.fields.FileName}`
+                p.innerText = e.fields.FileName;
+                li.appendChild(p)
+                return li
+            })
+            .forEach(e => a.appendChild(e))
+        )
+    </script>
+
+</body>
